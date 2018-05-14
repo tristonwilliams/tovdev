@@ -102,21 +102,6 @@ let imgData = {
 
 let defaultContent = '<img src="https://dj-gmaps-sfmc-content-nlock.herokuapp.com//dragIcon.png" style="display:block;margin-left:auto;margin-right:auto">';
 
-let saveData = () => {
-	
-	var toolbarOptions = [
-		['bold', 'italic', 'underline', 'strike'],
-		
-		[{ 'color': [] }, { 'background': [] }]
-	];
-
-	var quill = new Quill('#editor-container', {
-	  modules: {
-		toolbar: toolbarOptions
-	  },
-	  theme: 'snow'
-	});
-
  
 	
 	
