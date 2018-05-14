@@ -70,8 +70,7 @@
 var BlockSDK = __webpack_require__(1);
 
 if (window.self === window.top) {
-	document.body.innerText = 'This application is for use in the Salesforce Marketing Cloud Content Builder Editor only.';
-} else {
+
 	var toolbarOptions = [
 		['bold', 'italic', 'underline', 'strike'],
 		[{ 'color': [] }, { 'background': [] }]
