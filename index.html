@@ -1,20 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Text Over Image Block</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Full Editor - Quill Rich Text Editor</title>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="language" content="english">
+<meta name="viewport" content="width=device-width">
+
+ 
+<link rel="canonical" href="https://quilljs.com/standalone/full/">
+<link type="application/atom+xml" rel="alternate" href="https://quilljs.com/feed.xml" title="Quill - Your powerful rich text editor" />
+  
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" />
+
+<link rel="stylesheet" href="../quill.snow.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-	       <!-- Main Quill library -->
-        <script src="//cdn.quilljs.com/1.1.6/quill.js"></script>
-        <!-- Theme included stylesheets -->
-        <link href="//cdn.quilljs.com/1.1.6/quill.snow.css" rel="stylesheet">
-        <link href="//cdn.quilljs.com/1.1.6/quill.bubble.css" rel="stylesheet">
     <style>
         img {
             display: block;
@@ -22,12 +27,22 @@
             margin-right: auto;
         }
     </style>
-</head>
+<style>
+  body > #standalone-container {
+    margin: 50px auto;
+    max-width: 500px;
+  }
+  #editor-container {
+    height: 200px;
+  }
+</style>
 
+
+</head>
 <body>
-<div id="editor-container">
-        </div>
-    <div class="container">
+  
+	
+	 <div class="container">
         <form class="form-horizontal">
             <fieldset>
 
@@ -64,9 +79,25 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="Text">Text</label>
-                    <div class="col-md-2">
-                        <input id="Text" name="Text" type="text" placeholder="Text" class="form-control input-md" required="" value="Text Over Image">
-							
+                    <div class="col-md-4">
+                        <div id="standalone-container">
+  <div id="toolbar-container">
+  
+    <span class="ql-formats">
+      <button class="ql-bold"></button>
+      <button class="ql-italic"></button>
+      <button class="ql-underline"></button>
+      <button class="ql-strike"></button>
+    </span>
+    <span class="ql-formats">
+      <select class="ql-color"></select>
+      <select class="ql-background"></select>
+    </span>
+    
+  </div>
+  <div id="editor-container"></div>
+</div>
+						
                     </div>
                 </div>
 
@@ -77,14 +108,30 @@
     </form>
 
     </div>
+	
 
-    <script src="/blocksdk.js"></script>
+
+  
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script src="../quill.min.js"></script>
+
+<script>
+  var quill = new Quill('#editor-container', {
+    modules: {
+      formula: true,
+      syntax: true,
+      toolbar: '#toolbar-container'
+    },
+    placeholder: 'Text Over Image',
+    theme: 'snow'
+  });
+</script>
+<script src="/blocksdk.js"></script>
     <script src="/mainApp.js"></script>
 
-
-    <script>
-    </script>
-
 </body>
-
 </html>
