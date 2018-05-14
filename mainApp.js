@@ -63,7 +63,7 @@ let fetchData = () => {
         
             document.getElementById('ImgHeight').value = imgData.ImgHeight;
             document.getElementById('ImageURL').value = imgData.ImageURL;
-          document.getElementById('Text').value = imgData.Text;
+          quill.root.innerHTML = imgData.Text;
 
            
         }
