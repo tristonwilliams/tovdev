@@ -18,11 +18,12 @@ let defaultContent = '<img src="https://toidevtw.herokuapp.com/dragIcon.png" sty
 
 let saveData = () => {
 
+   var quill = new Quill('#editor-container');
     
     imgData.ImgHeight = document.getElementById('ImgHeight').value;
     imgData.ImageURL = document.getElementById('ImageURL').value;
-    imgData.Text = "jytdkhf"//document.getElementById('Text').value;
-
+    //imgData.Text = "jytdkhf"//document.getElementById('Text').value;
+     imgData.Text = quill.root.innerHTML 
 
     sdk.setData(imgData, (data) => {
         
