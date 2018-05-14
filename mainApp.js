@@ -9,7 +9,7 @@ let imgData = {
     ImageURL: 'http://image.s4.exct.net/lib/fe8f15737c62077a76/m/1/a9836fc9-54dc-434a-a09f-2b2ca88ce146.png',
     ImgHeight: 300,
     ImgWidth: 600,
-    Text: 'Text Over Image',
+   Text: 'Text Over Image',
 
 };
 
@@ -21,7 +21,7 @@ let saveData = () => {
     imgData.ImgWidth = document.getElementById('ImgWidth').value;
     imgData.ImgHeight = document.getElementById('ImgHeight').value;
     imgData.ImageURL = document.getElementById('ImageURL').value;
-    //imgData.Text = document.getElementById('Text').value;
+    imgData.Text = "jytdkhf"//document.getElementById('Text').value;
 
 
     sdk.setData(imgData, (data) => {
@@ -50,7 +50,7 @@ let fetchData = () => {
             document.getElementById('ImgWidth').value = imgData.ImgWidth;
             document.getElementById('ImgHeight').value = imgData.ImgHeight;
             document.getElementById('ImageURL').value = imgData.ImageURL;
-           // document.getElementById('Text').value = imgData.Text;
+          document.getElementById('Text').value = imgData.Text;
 
            
         }
