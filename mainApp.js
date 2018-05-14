@@ -12,13 +12,7 @@ let imgData = {
    Text: 'Text Over Image',
 
 };
-
-
-let defaultContent = '<img src="https://toidevtw.herokuapp.com/dragIcon.png" style="display:block;margin-left:auto;margin-right:auto">';
-
-let saveData = () => {
-
-   var toolbarOptions = [
+ var toolbarOptions = [
 		['bold', 'italic', 'underline', 'strike'],
 		
 		[{ 'color': [] }, { 'background': [] }]
@@ -30,6 +24,13 @@ let saveData = () => {
 	  },
 	  theme: 'snow'
 	});
+
+
+let defaultContent = '<img src="https://toidevtw.herokuapp.com/dragIcon.png" style="display:block;margin-left:auto;margin-right:auto">';
+
+let saveData = () => {
+
+  
     
     imgData.ImgHeight = document.getElementById('ImgHeight').value;
     imgData.ImageURL = document.getElementById('ImageURL').value;
