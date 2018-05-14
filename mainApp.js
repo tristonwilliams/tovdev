@@ -14,7 +14,7 @@ let imgData = {
 };
 
 
-let defaultContent = '<img src="https://dj-gmaps-sfmc-content-nlock.herokuapp.com//dragIcon.png" style="display:block;margin-left:auto;margin-right:auto">';
+let defaultContent = '<img src="https://toidevtw.herokuapp.com/dragIcon.png" style="display:block;margin-left:auto;margin-right:auto">';
 
 let saveData = () => {
 
