@@ -18,7 +18,18 @@ let defaultContent = '<img src="https://toidevtw.herokuapp.com/dragIcon.png" sty
 
 let saveData = () => {
 
-   var quill = new Quill('#editor-container');
+   var toolbarOptions = [
+		['bold', 'italic', 'underline', 'strike'],
+		
+		[{ 'color': [] }, { 'background': [] }]
+	];
+
+	var quill = new Quill('#editor-container', {
+	  modules: {
+		toolbar: toolbarOptions
+	  },
+	  theme: 'snow'
+	});
     
     imgData.ImgHeight = document.getElementById('ImgHeight').value;
     imgData.ImageURL = document.getElementById('ImageURL').value;
