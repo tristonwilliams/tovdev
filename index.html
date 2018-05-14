@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	       <!-- Main Quill library -->
+        <script src="//cdn.quilljs.com/1.1.6/quill.js"></script>
+        <!-- Theme included stylesheets -->
+        <link href="//cdn.quilljs.com/1.1.6/quill.snow.css" rel="stylesheet">
+        <link href="//cdn.quilljs.com/1.1.6/quill.bubble.css" rel="stylesheet">
     <style>
         img {
             display: block;
@@ -59,7 +65,8 @@
                     <label class="col-md-4 control-label" for="Text">Text</label>
                     <div class="col-md-2">
                         <input id="Text" name="Text" type="text" placeholder="Text" class="form-control input-md" required="" value="Text Over Image">
-
+							<div id="editor-container">
+        </div>
                     </div>
                 </div>
 
