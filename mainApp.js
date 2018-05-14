@@ -63,29 +63,19 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
 
+var BlockSDK = __webpack_require__(1);
 
-let sdk = new window.sfdc.BlockSDK(); //initalize SDK
-
-let imgData = {
-   
-    ImageURL: 'http://image.s4.exct.net/lib/fe8f15737c62077a76/m/1/a9836fc9-54dc-434a-a09f-2b2ca88ce146.png',
-    ImgHeight: 300,
-    ImgWidth: 600,
-    Text: 'Text Over Image',
-
-};
-
-
-
-let defaultContent = '<img src="https://dj-gmaps-sfmc-content-nlock.herokuapp.com//dragIcon.png" style="display:block;margin-left:auto;margin-right:auto">';
-
-let saveData = () => {
-	
+if (window.self === window.top) {
+	document.body.innerText = 'This application is for use in the Salesforce Marketing Cloud Content Builder Editor only.';
+} else {
 	var toolbarOptions = [
 		['bold', 'italic', 'underline', 'strike'],
-		
 		[{ 'color': [] }, { 'background': [] }]
+		
 	];
 
 	var quill = new Quill('#editor-container', {
@@ -95,50 +85,188 @@ let saveData = () => {
 	  theme: 'snow'
 	});
 
-    imgData.ImgWidth = document.getElementById('ImgWidth').value;
-    imgData.ImgHeight = document.getElementById('ImgHeight').value;
-    imgData.ImageURL = document.getElementById('ImageURL').value;
-    //imgData.Text = document.getElementById('Text').value;
-	imgData.Text = quill.root.innerHTML 
+	var sdk = new BlockSDK(['blocktester.herokuapp.com', 'localhost', 'marketingcloudapps.com'], true);
+
+	sdk.getContent(function (content) {
+		
+		var html = quill.root.innerHTML;
+		var imgHeight = document.getElementById('height').value;
+		var imgWidth = document.getElementById('width').value;
+   		var imgURL = document.getElementById('Image').value;
+		var htmlcontent = "<table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td style='background-repeat:no-repeat;' background='" + imgURL + "' bgcolor='#ddf3e9' width='" + imgWidth + "' height='" + imgHeight + "' valign='top' class='bgresize'> <!--[if gte mso 9]> <v:rect xmlns:v='urn:schemas-microsoft-com:vml' fill='true' stroke='false' style='background-repeat:no-repeat; width:" + imgWidth + ";height:" + imgHeight + ";'> <v:fill type='tile' src='" + imgURL + "' color='#ddf3e9' /> <v:textbox inset='0,0,0,0'> <![endif]--> <div> <table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td width='30' align='left' valign='top' style='font-size: 0%;' class='mobile-hidden'></td> <td align='left' valign='top' class='mobile-padding'><table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td align='left' valign='top' style='padding-top: 95px;color: #000000; padding-left: 100px; padding-right: 100px; font-size: 48px;' class='padding65'><span class='banner-heading55'><center>" + html + "</center></span></td> </tr> </tbody> </table></td> <td width='30' align='left' valign='top' class='mobile-hidden' style='font-size: 0%;'></td> </tr> </tbody> </table> </div> <!--[if gte mso 9]> </v:textbox> </v:rect> <![endif]--> </td> </tr> </tbody> </table>"
+		
+		//quill.root.innerHTML = content;
+		htmlcontent = content;
+
+		function saveText() {
+			
+			var html = quill.root.innerHTML;
+			var imgHeight = document.getElementById('height').value;
+ 			var imgWidth = document.getElementById('width').value;
+  		  	var imgURL = document.getElementById('Image').value;
+			
+			var htmlcontent = "<table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td style='background-repeat:no-repeat;' background='" + imgURL + "' bgcolor='#ddf3e9' width='" + imgWidth + "' height='" + imgHeight + "' valign='top' class='bgresize'> <!--[if gte mso 9]> <v:rect xmlns:v='urn:schemas-microsoft-com:vml' fill='true' stroke='false' style='background-repeat:no-repeat; width:" + imgWidth + ";height:" + imgHeight + ";'> <v:fill type='tile' src='" + imgURL + "' color='#ddf3e9' /> <v:textbox inset='0,0,0,0'> <![endif]--> <div> <table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td width='30' align='left' valign='top' style='font-size: 0%;' class='mobile-hidden'></td> <td align='left' valign='top' class='mobile-padding'><table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td align='left' valign='top' style='padding-top: 95px;color: #000000; padding-left: 100px; padding-right: 100px; font-size: 48px;' class='padding65'><span class='banner-heading55'><center>" + html + "</center></span></td> </tr> </tbody> </table></td> <td width='30' align='left' valign='top' class='mobile-hidden' style='font-size: 0%;'></td> </tr> </tbody> </table> </div> <!--[if gte mso 9]> </v:textbox> </v:rect> <![endif]--> </td> </tr> </tbody> </table>"
+		
+			sdk.setContent(htmlcontent);
+			sdk.setSuperContent(htmlcontent);
+
+			sdk.getData(function (data) {
+				var numberOfEdits = data.numberOfEdits || 0;
+				sdk.setData({
+					numberOfEdits: numberOfEdits + 1
+				});
+			});
+
+			sdk.getCentralData(function (central) {
+				var totalNumberOfEdits = central.totalNumberOfEdits || 0;
+				sdk.setCentralData({
+					totalNumberOfEdits: totalNumberOfEdits + 1
+				});
+			});
+		}
+		
 
 
-    sdk.setData(imgData, (data) => {
-        
-        let content = "<table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td style='background-repeat:no-repeat;' background='" + imgData.ImageURL + "' bgcolor='#ddf3e9' width='" + imgData.ImgWidth + "' height='" + imgData.ImgHeight + "' valign='top' class='bgresize'> <!--[if gte mso 9]> <v:rect xmlns:v='urn:schemas-microsoft-com:vml' fill='true' stroke='false' style='background-repeat:no-repeat; width:" + imgData.ImgWidth + ";height:" + imgData.ImgHeight + ";'> <v:fill type='tile' src='" + imgData.ImageURL + "' color='#ddf3e9' /> <v:textbox inset='0,0,0,0'> <![endif]--> <div> <table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td width='30' align='left' valign='top' style='font-size: 0%;' class='mobile-hidden'></td> <td align='left' valign='top' class='mobile-padding'><table width='100%' border='0' cellspacing='0' cellpadding='0'> <tbody> <tr> <td align='left' valign='top' style='padding-top: 95px;color: #000000; padding-left: 100px; padding-right: 100px; font-size: 48px;' class='padding65'><span class='banner-heading55'><center>" + imgData.Text + "</center></span></td> </tr> </tbody> </table></td> <td width='30' align='left' valign='top' class='mobile-hidden' style='font-size: 0%;'></td> </tr> </tbody> </table> </div> <!--[if gte mso 9]> </v:textbox> </v:rect> <![endif]--> </td> </tr> </tbody> </table>";
-
-        
-        if (content.search('%%') != -1) {
-            sdk.setSuperContent(defaultContent, (newSuperContent) => {});
-          
-        }
-        sdk.setContent(content);
-    });
-
-    console.log(JSON.stringify(imgData));
+		quill.on('text-change', saveText);
+	});
 }
 
-let fetchData = () => {
 
-  
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-    sdk.getData((data) => {
-        if (Object.keys(data).length > 0) {
-            imgData = data;
-      
-            document.getElementById('ImgWidth').value = imgData.ImgWidth;
-            document.getElementById('ImgHeight').value = imgData.ImgHeight;
-            document.getElementById('ImageURL').value = imgData.ImageURL;
-            //document.getElementById('Text').value = imgData.Text;
-			imgData.Text = quill.root.innerHTML 
+/* 
+ * Copyright (c) 2018, salesforce.com, inc.
+ * All rights reserved.
+ * Licensed under the BSD 3-Clause license. 
+ * For full license text, see LICENSE.txt file in the repo root  or https://opensource.org/licenses/BSD-3-Clause
+ */
 
-           
-        }
-    });
+var SDK = function (whitelistOverride, sslOverride) {
 
-    console.log(JSON.stringify(imgData));
+	// the custom block should verify it is being called from
+	// the marketing cloud
+	this._validateOrigin = function (origin) {
+		// Make sure to escape periods since these strings are used in a regular expression
+		var allowedDomains = whitelistOverride || ['marketingcloudapps\\.com', 'blocktester\\.herokuapp\\.com'];
+		for (var i = 0; i < allowedDomains.length; i++) {
+			// Makes the s optional in https
+			var optionalSsl = sslOverride ? '?' : '';
+			var whitelistRegex = new RegExp('^https' + optionalSsl + '://([a-zA-Z0-9-]+\\.)*' + allowedDomains[i] + '(:[0-9]+)?$', 'i');
+			if (whitelistRegex.test(origin)) {
+				return true;
+			}
+		}
+
+		return false;
+	};
+
+	this._messageId = 1;
+	this._messages = {
+		0: function () {}
+	};
+
+	this._receiveMessage = function (message) {
+		message = message || {};
+		var data = message.data || {};
+		if (data.method === 'handShake') {
+			if (this._validateOrigin(data.origin)) {
+				this._parentOrigin = data.origin;
+				return;
+			}
+		}
+		// if the message is not from the validated origin it gets ignored
+		if (!this._parentOrigin || this._parentOrigin !== message.origin) {
+			return;
+		}
+		// when the message has been received, we execute its callback
+		(this._messages[data.id || 0] || function () {})(data.payload);
+		delete this._messages[data.id];
+	};
+
+	window.addEventListener('message', this._receiveMessage.bind(this), false);
+
+	this._postToEditor = function (payload, callback, ttl) {
+		var self = this;
+		// we only message up if we have
+		// validated the origin
+		if (!this._parentOrigin) {
+			if (ttl === undefined || ttl > 0) {
+				window.setTimeout(function () {
+					self._postToEditor(payload, callback, (ttl || 5) - 1);
+				}, 20);
+			}
+			return;
+		}
+		this._messages[this._messageId] = callback;
+		payload.id = this._messageId;
+		this._messageId += 1;
+		// the actual postMessage always uses
+		// the validated origin
+		window.parent.postMessage(payload, this._parentOrigin);
+	};
+
+	this.getContent = function (cb) {
+		this._postToEditor({
+			method: 'getContent'
+		}, cb);
+	};
+
+	this.setContent = function (content, cb) {
+		this._postToEditor({
+			method: 'setContent',
+			payload: content
+		}, cb);
+	};
+
+	this.setSuperContent = function (content, cb) {
+		this._postToEditor({
+			method: 'setSuperContent',
+			payload: content
+		}, cb);
+	};
+
+	this.getData = function (cb) {
+		this._postToEditor({
+			method: 'getData'
+		}, cb);
+	};
+
+	this.setData = function (dataObj, cb) {
+		this._postToEditor({
+			method: 'setData',
+			payload: dataObj
+		}, cb);
+	};
+
+	this.getCentralData = function (cb) {
+		this._postToEditor({
+			method: 'getCentralData'
+		}, cb);
+	};
+
+	this.setCentralData = function (dataObj, cb) {
+		this._postToEditor({
+			method: 'setCentralData',
+			payload: dataObj
+		}, cb);
+	};
+
+	window.parent.postMessage({
+		method: 'handShake',
+		origin: window.location.origin
+	}, '*');
+};
+
+if (typeof(window) === 'object') {
+	window.sfdc = window.sfdc || {};
+	window.sfdc.BlockSDK = SDK;
+}
+if (true) {
+	module.exports = SDK;
 }
 
 
-
-window.onload = fetchData;
-window.onchange = saveData;
+/***/ })
+/******/ ])
