@@ -19,13 +19,7 @@ var quill = new Quill('#editor-container', {
 
 let sdk = new window.sfdc.BlockSDK(); //initalize SDK
 
-let imgData = {
 
-    ImageURL: 'http://image.s4.exct.net/lib/fe8f15737c62077a76/m/1/a9836fc9-54dc-434a-a09f-2b2ca88ce146.png',
-    ImgHeight: 400,
-    ImgText: 'Text Over Image'
-
-};
 
 
 
@@ -33,7 +27,13 @@ let defaultContent = '<img src="https://toidevtw.herokuapp.com/dragIcon.png" sty
 
 let saveData = () => {
 
+let imgData = {
 
+    ImageURL: 'http://image.s4.exct.net/lib/fe8f15737c62077a76/m/1/a9836fc9-54dc-434a-a09f-2b2ca88ce146.png',
+    ImgHeight: 400,
+    ImgText: 'Text Over Image'
+
+};
 
     //imgData.ImgHeight = document.getElementById('ImgHeight').value;
     //imgData.ImageURL = document.getElementById('ImageURL').value;
