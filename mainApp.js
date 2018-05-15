@@ -50,7 +50,7 @@ let saveData = () => {
         sdk.setContent(content);
    
 
-    //console.log(JSON.stringify(imgData));
+    console.log(JSON.stringify(imgData));
 }
 
 let fetchData = () => {
@@ -70,7 +70,7 @@ let fetchData = () => {
         }
     });
 
-    //console.log(JSON.stringify(imgData));
+    console.log(JSON.stringify(imgData));
 }
 
 
